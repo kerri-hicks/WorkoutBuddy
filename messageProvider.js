@@ -112,6 +112,19 @@ class ScriptedMessageProvider extends MessageProvider {
             case 'reminderFollowUp':
                 return this._selectRandom(this.messages.reminderFollowUp);
             
+            case 'message':
+                // Generic response to user messages
+                const responses = [
+                    "Got it.",
+                    "I hear you.",
+                    "Okay.",
+                    "Fair enough.",
+                    "Noted.",
+                    "Alright.",
+                    "Makes sense."
+                ];
+                return this._selectRandom(responses);
+            
             default:
                 return "I'm here when you need me.";
         }
@@ -214,6 +227,9 @@ Remember: She needs external structure because her internal motivation is deplet
             
             case 'reminderFollowUp':
                 return `Following up an hour after their scheduled workout. ${streakInfo} Ask what actually happened (keep it conversational and brief).`;
+            
+            case 'message':
+                return `${streakInfo} User says: "${data.content}". Respond conversationally and briefly (1-2 sentences).`;
             
             default:
                 return `${streakInfo} Say something supportive and brief.`;
