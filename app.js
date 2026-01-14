@@ -116,6 +116,20 @@ class WorkoutBuddyApp {
             }
         });
 
+        // Chat input
+        const chatInput = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendBtn');
+
+        sendBtn.addEventListener('click', () => {
+            this.handleUserMessage();
+        });
+
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                this.handleUserMessage();
+            }
+        });
+
         // Load current settings into UI
         this.loadSettingsUI();
     }
@@ -264,6 +278,22 @@ class WorkoutBuddyApp {
 
         // Display message
         this.displayMessage(sender, content);
+    }
+
+    async handleUserMessage() {
+        const input = document.getElementById('chatInput');
+        const message = input.value.trim();
+        
+        if (!message) return;
+
+        // Display user message
+        await this.sendMessage('user', 'message', { content: message });
+
+        // Clear input
+        input.value = '';
+
+        // Get AI response
+        await this.sendMessage('assistant', 'checkIn');
     }
 
     async handleWorkoutComplete() {
