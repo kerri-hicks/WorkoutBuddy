@@ -102,6 +102,48 @@ body.streak-danger { background: linear-gradient(135deg, #FFEBEE 0%, #F5F7FA 100
     gap: 12px;
 }
 
+.chat-input-container {
+    padding: 12px;
+    background: #F5F5F5;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    gap: 8px;
+}
+
+#chatInput {
+    flex: 1;
+    padding: 12px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 24px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+#chatInput:focus {
+    border-color: var(--primary-color);
+}
+
+#sendBtn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 24px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+#sendBtn:hover {
+    background: #357ABD;
+}
+
+#sendBtn:active {
+    transform: scale(0.98);
+}
+
 .message {
     padding: 12px 16px;
     border-radius: 12px;
