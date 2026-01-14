@@ -1,0 +1,3 @@
+This file should contain a 192x192 icon image for the PWA.
+For now, you can use any fitness/workout related icon.
+You can generate one using an online icon generator or use an emoji-based icon.

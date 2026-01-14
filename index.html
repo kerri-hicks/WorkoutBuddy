@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4A90E2">
+    <title>Workout Buddy</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="app-header">
+            <h1>💪 Workout Buddy</h1>
+            <div class="streak-display">
+                <span class="streak-count">0</span>
+                <span class="streak-label">day streak</span>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Chat Interface -->
+            <div class="chat-container" id="chatContainer">
+                <div class="chat-messages" id="chatMessages">
+                    <!-- Messages will be inserted here -->
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <button class="action-btn primary" id="markDoneBtn">✓ I Did It!</button>
+                <button class="action-btn secondary" id="skipBtn">Skip Today</button>
+            </div>
+
+            <!-- Next Workout Display -->
+            <div class="next-workout" id="nextWorkout">
+                <div class="next-workout-label">Next workout:</div>
+                <div class="next-workout-time" id="nextWorkoutTime">Loading...</div>
+            </div>
+        </main>
+
+        <!-- Settings Panel -->
+        <div class="settings-panel" id="settingsPanel">
+            <div class="settings-header">
+                <h2>Settings</h2>
+                <button class="close-btn" id="closeSettings">×</button>
+            </div>
+            
+            <div class="settings-content">
+                <div class="setting-group">
+                    <h3>Workout Schedule</h3>
+                    <div class="time-picker">
+                        <label for="workoutTime">Workout Time:</label>
+                        <input type="time" id="workoutTime" value="12:00">
+                    </div>
+                    <div class="days-selector">
+                        <label class="day-toggle">
+                            <input type="checkbox" data-day="0">
+                            <span>Sunday</span>
+                        </label>
+                        <label class="day-toggle">
+                            <input type="checkbox" data-day="1">
+                            <span>Monday</span>
+                        </label>
+                        <label class="day-toggle">
+                            <input type="checkbox" data-day="2">
+                            <span>Tuesday</span>
+                        </label>
+                        <label class="day-toggle">
+                            <input type="checkbox" data-day="3">
+                            <span>Wednesday</span>
+                        </label>
+                        <label class="day-toggle">
+                            <input type="checkbox" data-day="4">
+                            <span>Thursday</span>
+                        </label>
+                        <label class="day-toggle">
+                            <input type="checkbox" data-day="5">
+                            <span>Friday</span>
+                        </label>
+                        <label class="day-toggle">
+                            <input type="checkbox" data-day="6">
+                            <span>Saturday</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="setting-group">
+                    <h3>Message Provider</h3>
+                    <select id="messageProvider">
+                        <option value="scripted">Scripted Messages</option>
+                        <option value="api">Live AI (Requires API Key)</option>
+                    </select>
+                    <div id="apiKeySection" style="display: none;">
+                        <label for="apiKey">Anthropic API Key:</label>
+                        <input type="password" id="apiKey" placeholder="sk-ant-...">
+                    </div>
+                </div>
+
+                <div class="setting-group">
+                    <button class="action-btn secondary" id="clearDataBtn">Clear All Data</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Toggle Button -->
+        <button class="settings-toggle" id="settingsToggle">⚙️</button>
+
+        <!-- History Panel -->
+        <div class="history-panel" id="historyPanel">
+            <div class="history-header">
+                <h2>History</h2>
+                <button class="close-btn" id="closeHistory">×</button>
+            </div>
+            <div class="history-content" id="historyContent">
+                <!-- History items will be inserted here -->
+            </div>
+        </div>
+
+        <!-- History Toggle Button -->
+        <button class="history-toggle" id="historyToggle">📊</button>
+    </div>
+
+    <script src="messageProvider.js"></script>
+    <script src="storage.js"></script>
+    <script src="notifications.js"></script>
+    <script src="app.js"></script>
+    <script>
+        // Register service worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js').then(reg => {
+                console.log('Service Worker registered', reg);
+            }).catch(err => {
+                console.log('Service Worker registration failed', err);
+            });
+        }
+    </script>
+</body>
+</html>
